@@ -9,7 +9,9 @@ Hosted using [Github Pages](https://pages.github.com/) and [mkdocs](https://www.
 
 ## Contributing
 
-Cheatsheet for myself as I don't plan to have any contributors other than myself.
+Cheatsheet for myself since I don't plan to have any contributors other than myself.
+
+## Local Dev
 
 ### Mkdocs install
 
@@ -44,6 +46,13 @@ By default, the dev-server serves on: `http://127.0.0.1:8000/`
 
 ### Deployment
 
+1. Checkout dev branch.
+2. Commit changes and open PR.
+3. Merge PR.
+4. Pipeline runs and deploys changes to live site.
+
+### Manual Deployment (deprecated)
+
 Annoyingly, the lowest friction deployment strategy when it comes to having
 a GitHub Pages user-level (as opposed to a GitHub Pages Project page) "blog" 
 using Mkdocs as the generator requires two separate repos. 
@@ -62,5 +71,3 @@ Then, from within the **serving-repo**, run:
 mkdocs gh-deploy --config-file ../github-user-page-content/mkdocs.yml --remote-branch master
 ```
 **Caution! ensure you are in the correct repo when you run the above command.**
-
-Perhaps someday I will automate this.
