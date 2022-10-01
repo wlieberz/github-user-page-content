@@ -22,6 +22,7 @@ jobs:
         with:
           repository: 'wlieberz/wlieberz.github.io'
           path: './repos/wlieberz.github.io'
+          token: ${{ secrets.MKDOCS_DEPLOY_TOKEN }}
 
       - name: Publish to Serving Repo
         run: cd ./repos/wlieberz.github.io && source ~/env/mkdocs/bin/activate && mkdocs gh-deploy --config-file ../github-user-page-content/mkdocs.yml --remote-branch master
