@@ -9,7 +9,7 @@ jobs:
       - name: Checkout Content Repo
         uses: actions/checkout@v3
         with:
-          repository: 'https://github.com/wlieberz/github-user-page-content'
+          repository: 'wlieberz/github-user-page-content'
 
       - name: Verify Checkout
         run: pwd && ls -lh
