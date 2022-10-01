@@ -1,8 +1,9 @@
 # About this Blog
 
 This blog will probably mostly contain posts about DevOps, 
-programming, Linux, neat opensource projects, and suchlike topics. It will 
-probably be updated sporadically and infrequently.
+programming, Linux, neat opensource projects, and similar topics.
+
+It will probably be updated sporadically and infrequently.
 
 ## About Me
 
