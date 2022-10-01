@@ -13,6 +13,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: 'wlieberz/github-user-page-content'
+          path: './repos/github-user-page-content'
 
       - name: Verify After Checkout
-        run: pwd && ls -lh
+        run: pwd && ls -lh && ls -lh ./repos/ && ls -lha ./repos/github-user-page-content/
