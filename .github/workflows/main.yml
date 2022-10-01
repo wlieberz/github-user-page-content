@@ -11,18 +11,17 @@ jobs:
       - name: Install mkdocs
         run: mkdir ~/env && python3 -m venv ~/env/mkdocs && source ~/env/mkdocs/bin/activate && pip install --upgrade pip && pip install mkdocs==${MKDOCS_VER}
 
-      - name: Verify mkdocs install
-        run: source ~/env/mkdocs/bin/activate && mkdocs --version
+      - name: Checkout Content Repo
+        uses: actions/checkout@v3
+        with:
+          repository: 'wlieberz/github-user-page-content'
+          path: './repos/github-user-page-content'
 
-#      - name: Checkout Content Repo
-#        uses: actions/checkout@v3
-#        with:
-#          repository: 'wlieberz/github-user-page-content'
-#          path: './repos/github-user-page-content'
-#
-#      - name: Checkout Serving Repo
-#        uses: actions/checkout@v3
-#        with:
-#          repository: 'wlieberz/wlieberz.github.io'
-#          path: './repos/wlieberz.github.io'
+      - name: Checkout Serving Repo
+        uses: actions/checkout@v3
+        with:
+          repository: 'wlieberz/wlieberz.github.io'
+          path: './repos/wlieberz.github.io'
 
+      - name: Publish to Serving Repo
+        run: cd ./repos/wlieberz.github.io && source ~/env/mkdocs/bin/activate && mkdocs gh-deploy --config-file ../github-user-page-content/mkdocs.yml --remote-branch master
