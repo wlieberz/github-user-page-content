@@ -9,7 +9,12 @@ jobs:
       MKDOCS_VER: "1.3.1"
     steps:
       - name: Install mkdocs
-        run: mkdir ~/env && python3 -m venv ~/env/mkdocs && source ~/env/mkdocs/bin/activate && pip install --upgrade pip && pip install mkdocs==${MKDOCS_VER}
+        run: |
+          mkdir ~/env
+          python3 -m venv ~/env/mkdocs
+          source ~/env/mkdocs/bin/activate
+          pip install --upgrade pip
+          pip install mkdocs==${MKDOCS_VER}
 
       - name: Checkout Content Repo
         uses: actions/checkout@v3
@@ -25,4 +30,7 @@ jobs:
           token: ${{ secrets.MKDOCS_DEPLOY_TOKEN }}
 
       - name: Publish to Serving Repo
-        run: cd ./repos/wlieberz.github.io && source ~/env/mkdocs/bin/activate && mkdocs gh-deploy --config-file ../github-user-page-content/mkdocs.yml --remote-branch master
+        run: |
+          cd ./repos/wlieberz.github.io
+          source ~/env/mkdocs/bin/activate
+          mkdocs gh-deploy --config-file ../github-user-page-content/mkdocs.yml --remote-branch master
