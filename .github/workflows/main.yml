@@ -5,18 +5,24 @@ jobs:
   publish:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    env:
+      MKDOCS_VER: "1.3.1"
     steps:
-      - name: Checkout Content Repo
-        uses: actions/checkout@v3
-        with:
-          repository: 'wlieberz/github-user-page-content'
-          path: './repos/github-user-page-content'
+      - name: Install mkdocs
+        run: mkdir ~/env && python3 -m venv ~/env/mkdocs && source ~/env/mkdocs/bin/activate && pip install --upgrade pip && pip install mkdocs==${MKDOCS_VER}
 
-      - name: Checkout Serving Repo
-        uses: actions/checkout@v3
-        with:
-          repository: 'wlieberz/wlieberz.github.io'
-          path: './repos/wlieberz.github.io'
+      - name: Verify mkdocs install
+        run: source ~/env/mkdocs/bin/activate && mkdocs --version
 
-      - name: Verify After Checkout
-        run: echo REPOS DIR CONTENTS && ls -lh ./repos/ && echo CONTENT REPO CONTENTS && ls -l ./repos/wlieberz.github.io/
+#      - name: Checkout Content Repo
+#        uses: actions/checkout@v3
+#        with:
+#          repository: 'wlieberz/github-user-page-content'
+#          path: './repos/github-user-page-content'
+#
+#      - name: Checkout Serving Repo
+#        uses: actions/checkout@v3
+#        with:
+#          repository: 'wlieberz/wlieberz.github.io'
+#          path: './repos/wlieberz.github.io'
+
