@@ -6,14 +6,17 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - name: Verify Before Checkout
-        run: pwd && ls -lh
-
       - name: Checkout Content Repo
         uses: actions/checkout@v3
         with:
           repository: 'wlieberz/github-user-page-content'
           path: './repos/github-user-page-content'
 
+      - name: Checkout Serving Repo
+        uses: actions/checkout@v3
+        with:
+          repository: 'wlieberz/wlieberz.github.io'
+          path: './repos/wlieberz.github.io'
+
       - name: Verify After Checkout
-        run: pwd && ls -lh && ls -lh ./repos/ && ls -lha ./repos/github-user-page-content/
+        run: echo REPOS DIR CONTENTS && ls -lh ./repos/ && echo CONTENT REPO CONTENTS && ls -l ./repos/wlieberz.github.io/
