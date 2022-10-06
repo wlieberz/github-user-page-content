@@ -3,6 +3,7 @@ site_url: https://wlieberz.github.io
 theme: readthedocs
 nav:
   - Home: index.md
+  - Rust Learning Resources: Rust-Learning-Resources.md
   - Installing Bitwarden via AppImage on a KDE Distro: 2021-02-21-Install-Bitwarden-appimage-on-KDE-distro.md
   - CVE-2021-3156 "Baron Samedit" - patching RHEL-7 & RHEL-5 hosts: 2021-02-15-sudo-vulnerability-CVE-2021-3156-rhel5-patching.md
   - CVE-2021-3156 "Baron Samedit" - checking hosts: 2021-02-14-sudo-vulnerability-CVE-2021-3156.md
