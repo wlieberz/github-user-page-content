@@ -6,7 +6,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     env:
-      MKDOCS_VER: "1.3.1"
+      MKDOCS_VER: "1.4.2"
     steps:
       - name: Install mkdocs
         run: |
