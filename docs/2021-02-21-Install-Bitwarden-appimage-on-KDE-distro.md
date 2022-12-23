@@ -2,6 +2,8 @@
 
 **Date:** 2021-02-21
 
+**Updated:** 2022-12-22
+
 **Categories:**
 `linux, security, appimage, kde, bitwarden`
 
@@ -17,7 +19,7 @@ I really appreciate that while Bitwarden provides the usual iOS, Android, Window
 
 Disclaimer: this is not the only way to handle installation, and may not be the best method, depending on your needs, but this is how I like to do it.
 
-This method installs into your home directory, so we assume that no other users on your system will need access to Bitwarden. Of course, it would be trivial to modify these steps slightly to install to some centrally accessible location like `/usr/local/bin` provided that you have sudo rights on the machine.
+This method installs the it into your home directory, so we assume that no other users on your system will need access to Bitwarden.
 
 ```sh
 # Create a bin directory in your home:
@@ -25,7 +27,7 @@ mkdir ~/bin
 cd ~/bin
 
 # Get the latest available AppImage Bitwarden package: 
-wget "https://vault.bitwarden.com/download/?app=desktop&platform=linux"
+wget "https://vault.bitwarden.com/download/?app=desktop&platform=linux" -O Bitwarden.AppImage
 
 # Make the AppImage executable:
 chmod 775 Bitwarden*.AppImage
@@ -33,12 +35,13 @@ chmod 775 Bitwarden*.AppImage
 # Since the Bitwarden AppImage binary will change its name whenever it
 # it auto-updates, I like to create a wrapper-script to call it:
 cat << EOF > ./bitwarden.sh
-#!/usr/bin/env bash
+#!/bin/bash
 
-$HOME/bin/Bitwarden*.AppImage
+$HOME/bin/Bitwarden*.AppImage &> $HOME/bin/bitwarden.log &
 
 EOF
 
+# Don't forget to make the wrapper script executable:
 chmod 770 bitwarden.sh
 ```
 
@@ -46,12 +49,12 @@ chmod 770 bitwarden.sh
 
 Next, I like to integrate the application into my KDE menu. This should work regardless of the underlying distro, as long as your desktop environment is KDE (and why wouldn't it be?). 
 
-Right-click on the KDE menu, click "New Item", type the name "Bitwarden", and click "ok". On the left hand side, drag the Bitwarden menu item into the category that makes the most sense to you - I usually put it in the "Office" category. On the right-hand side: Optionally add a description and comment, but definitely modify the "Command" field to point to the path where you put the AppImage. Hint: use the wrapper script you created earlier: `~/bin/bitwarden.sh`. You can also add an icon by clicking the empty square in the KDE Menu Editor (right-hand side). Usually I search within system icons for "lock" and just use a generic padlock icon. When done, click "save" to close out of the Menu Editor. 
+Right-click on the KDE menu, click "New Item", type the name "Bitwarden", and click "ok". On the left hand side, drag the Bitwarden menu item into the category that makes the most sense to you - I usually put it in the "Office" category. On the right-hand side: Optionally add a description and comment, but definitely modify the "Command" field to: `/bin/bash -c "/home/<YOUR USER NAME>/bin/bitwarden.sh"`. You can also add an icon by clicking the empty square in the KDE Menu Editor (right-hand side). Usually I search within system icons for "lock" and just use a generic padlock icon. When done, click "save" to close out of the Menu Editor. Note: if you do not set a custom icon, the menu entry will just use a default "empty page" icon - but when it is running in the task manager you will actually see the correct Bitwarden logo.
 
 I have heard there is an AppImage daemon [appimaged](https://github.com/probonopd/go-appimage) as well as a Launcher project [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher), either of which would probably help with the automation of integrating AppImage apps into GUI menus, and also might add some automation around updating the AppImages themselves. I should probably look into these if I start using AppImages on a larger scale. If I do, I'll try to come back and edit this post.
 
 It doesn't much matter where you put the AppImage and whether or not you integrate it into the menu of your desktop environment of choice. As far as I can tell, Bitwarden will store local data in your home directory, as a well-behaved desktop application should, in `~/.config/Bitwarden`.
 
-Finally, just a friendly reminder to ensure you have configured two factor [authentication](https://bitwarden.com/help/article/setup-two-step-login/).
+Finally, just a friendly reminder to ensure you have [configured two factor authentication](https://bitwarden.com/help/article/setup-two-step-login/).
 
 Happy password managing!
