@@ -87,7 +87,7 @@ Just a small subset of sessions which I personally thought were interesting and 
 
 ### Get started building your first serverless, event-driven application (SVS209)
 
-Really excellent talk especially for those who are newer to AWS Serverless. It does a great job of modeling organic growth of an application from [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) to an app with over 100 active subscribers and how the can be extended with new features with minimal refactoring, while still starting small and simple.
+Really excellent talk especially for those who are newer to AWS Serverless. It does a great job of modeling organic growth of an application from [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) to an app with over 100 active subscribers and how the app can be extended with new features with minimal refactoring, while still starting small and simple.
 
 [Link](https://www.youtube.com/watch?v=-WYBOuP1Y6E&list=PL2yQDdvlhXf8Erryfslfo3E42QtcX-aiD&index=3)
 
