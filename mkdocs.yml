@@ -3,6 +3,7 @@ site_url: https://wlieberz.github.io
 theme: readthedocs
 nav:
   - Home: index.md
+  - KubeCon 2022: kubecon-2022.md
   - AWS re:Invent 2022: aws-reinvent-2022.md
   - Rust Learning Resources: Rust-Learning-Resources.md
   - Installing Bitwarden via AppImage on a KDE Distro: 2021-02-21-Install-Bitwarden-appimage-on-KDE-distro.md
