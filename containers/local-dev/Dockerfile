@@ -8,7 +8,7 @@ RUN apt update && \
   apt upgrade -y && \
   apt install -y gcc g++ make ruby ruby-dev && \
   apt-get clean && \
-  gem install jekyll bundler
+  gem install bundler jekyll minima
 
 # UID == ubuntu
 USER 1000
