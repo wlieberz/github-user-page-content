@@ -7,10 +7,16 @@ LABEL org.opencontainers.image.authors="https://github.com/wlieberz"
 RUN apt update && \
   apt upgrade -y && \
   apt install -y gcc g++ make ruby ruby-dev && \
-  apt-get clean && \
-  gem install bundler jekyll minima
+  apt-get clean
 
-# UID == ubuntu
+ENV GEM_HOME="/home/ubuntu/.gems"
+ENV BUNDLE_PATH="/home/ubuntu/.gems"
+ENV BUNDLE_BIN="/home/ubuntu/.gems/bin"
+ENV PATH="${BUNDLE_BIN}:${PATH}"
+
+# UID 1000 == ubuntu
 USER 1000
-
 WORKDIR /home/ubuntu
+COPY --chown=ubuntu:ubuntu wlieberz-tech-blog/Gemfile* ./
+RUN gem install bundler jekyll jekyll-sitemap minima
+RUN bundle install
