@@ -1,73 +1,37 @@
 # About
 
-This is the repository for the source files for my blog:
-[wlieberz.github.io](https://wlieberz.github.io)
+This is the source repo for my Github Pages based Tech Blog which is available at [wlieberz.github.io](https://wlieberz.github.io).
 
-## Background
+It used to be built via [mkdocs](https://www.mkdocs.org/), but I've decided to switch it to [jekyll](https://jekyllrb.com/) for more flexibility.
 
-Hosted using [Github Pages](https://pages.github.com/) and [mkdocs](https://www.mkdocs.org/).
+## Dev Notes
 
-## Contributing
+These are some notes for myself. You are welcome to read them as well.
 
-Cheatsheet for myself since I don't plan to have any contributors other than myself.
+For a better developer experience, I'm using a Justfile instead of a Makefile. [More info](https://just.systems/).
 
-## Local Dev
-
-### Mkdocs install
-
-Instructions assume Linux. Tested on `Ubuntu 22.04 LTS`.
-
+- Check just commands:
 ```sh
-# Create some place for your Python virtual-environments
-mkdir ~/env
-# Create a new venv for mkdocs
-python3 -m venv ~/env/mkdocs
-# Activate it
-source ~/env/mkdocs/bin/activate
-# Ensure the latest version of pip within the venv
-pip install --upgrade pip
-# Install 
-pip install mkdocs
+just -l
 ```
 
-Now that it is installed, you just need to activate it to use mkdocs:
-
+- Dev Container build
 ```sh
-source ~/env/mkdocs/bin/activate
+# Docker build and tag locally with tag v0.2.1
+just build-local-dev-container v0.2.1
 ```
 
-### Local Testing
 
+- Serve the site locally
 ```sh
-mkdocs serve
+just local-serve
 ```
+- Local site available as: [http://127.0.0.1:4000/](http://127.0.0.1:4000/)
+    - Sitemap and robots.txt are automatically working
+        - [http://127.0.0.1:4000/sitemap.xml](http://127.0.0.1:4000/sitemap.xml)
+        - [http://127.0.0.1:4000/robots.txt](http://127.0.0.1:4000/robots.txt)
 
-By default, the dev-server serves on: `http://127.0.0.1:8000/`
-
-### Deployment
-
-1. Checkout dev branch.
-2. Commit changes and open PR.
-3. Merge PR.
-4. Pipeline runs and deploys changes to live site.
-
-### Manual Deployment (deprecated)
-
-Annoyingly, the lowest friction deployment strategy when it comes to having
-a GitHub Pages user-level (as opposed to a GitHub Pages Project page) "blog" 
-using Mkdocs as the generator requires two separate repos. 
-
-One repo hosts the actual site and the other hosts the source files of the site.
-
-In order to deploy, you must ensure you have both the live-site and content
-git repos checked out. 
-
-- Serving-repo: [https://github.com/wlieberz/wlieberz.github.io](https://github.com/wlieberz/wlieberz.github.io)
-- Content-repo (this repo): [https://github.com/wlieberz/github-user-page-content](https://github.com/wlieberz/github-user-page-content)
-
-Then, from within the **serving-repo**, run:
-
+- Build site for prod
 ```sh
-mkdocs gh-deploy --config-file ../github-user-page-content/mkdocs.yml --remote-branch master
+JEKYLL_ENV=production bundle exec jekyll build
 ```
-**Caution! ensure you are in the correct repo when you run the above command.**
