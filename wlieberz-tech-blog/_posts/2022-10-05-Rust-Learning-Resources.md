@@ -1,12 +1,9 @@
-# Rust Learning Resources
-
-**Date:** 2022-10-05
-
-**Categories:**
-`rust, learning`
-
-## About
-
+---
+layout: post
+title: "Rust Learning Resources"
+date: 2022-10-05
+categories: rust
+---
 The intention of this blog post is to serve as a quick cheatsheet for those
 who may be interested in learning Rust, whether for the first time or to 
 take existing skills to the next level.
