@@ -12,3 +12,12 @@ local-serve local_serv_ver=local_serv_ver_default:
   -w /home/ubuntu/wlieberz-tech-blog \
   github-user-page-content-local-dev:{{local_serv_ver}} \
   bundle exec jekyll serve --livereload --host 0.0.0.0
+
+build-prod-site local_serv_ver=local_serv_ver_default:
+  sudo docker run \
+  -e JEKYLL_ENV=production \
+  -v $(pwd)/wlieberz-tech-blog:/home/ubuntu/wlieberz-tech-blog:z \
+  -w /home/ubuntu/wlieberz-tech-blog \
+  github-user-page-content-local-dev:{{local_serv_ver}} \
+  bundle exec jekyll build
+  @echo '#### Production site built and output to: wlieberz-tech-blog/_site'
