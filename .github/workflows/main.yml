@@ -5,9 +5,8 @@ jobs:
     #if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     #env:
-      #MKDOCS_VER: "1.6.1"
+      #FOO: "bar"
     steps:
       - name: Todo
         run: |
           echo "TODO!"
-
